@@ -1,0 +1,36 @@
+/* *{
+    scroll-behavior: smooth;
+} */
+
+.normal-bullet {
+    list-style: disc !important;
+    /* Ensures default bullet points */
+    padding-left: 20px !important;
+    /* Adjust indentation */
+    margin: 0 !important;
+}
+
+.normal-bullet li::before {
+    content: none !important;
+    /* Removes any custom icons */
+}
+
+.line {
+    border: none;
+    height: 2px;
+    background-color: #D3D3D3;
+    width: 100%;
+    /* Ensures the line stays within the div */
+}
+
+.a-custom {
+    color: #EF3724;
+    /* Default link color */
+    text-decoration: none;
+    /* Removes underline */
+    font-weight: bold;
+}
+
+.a-custom:hover {
+    color: #EF3724;
+}
