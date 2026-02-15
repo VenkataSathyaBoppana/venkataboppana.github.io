@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 140 100% 50%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 45 100% 50%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 140 100% 50%;
+    --radius: 0.25rem;
+    
+    /* Breaking Bad Theme Colors */
+    --bb-green: #00FF41;
+    --bb-green-dim: #00CC33;
+    --bb-green-dark: #008F24;
+    --bb-amber: #FFD700;
+    --bb-yellow: #F4D03F;
+    --bb-black: #0D0D0D;
+    --bb-charcoal: #1A1A1A;
+    --bb-gray: #2D2D2D;
+    --bb-white: #F0F0F0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-bb-black text-bb-white font-sans antialiased;
+    overflow-x: hidden;
+    background-color: #0D0D0D;
+  }
+  
+  ::selection {
+    background: rgba(0, 255, 65, 0.4);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Periodic Table Element Card - Breaking Bad Style */
+  .element-card {
+    @apply relative bg-bb-charcoal border-2 border-bb-gray rounded-sm overflow-hidden;
+    aspect-ratio: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .element-card:hover {
+    @apply border-bb-green;
+    box-shadow: 
+      0 0 20px rgba(0, 255, 65, 0.4),
+      0 0 40px rgba(0, 255, 65, 0.2),
+      inset 0 0 20px rgba(0, 255, 65, 0.05);
+    transform: scale(1.05);
+  }
+  
+  .element-symbol {
+    @apply absolute top-2 left-2 font-mono text-xs text-bb-muted;
+  }
+  
+  .element-number {
+    @apply absolute top-2 right-2 font-mono text-xs text-bb-muted;
+  }
+  
+  .element-name {
+    @apply absolute bottom-2 left-2 right-2 font-mono text-[10px] text-bb-white text-center uppercase tracking-wider;
+  }
+  
+  .element-abbr {
+    @apply absolute inset-0 flex items-center justify-center font-mono font-bold text-bb-green;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  /* Breaking Bad Green Glow Button */
+  .btn-bb {
+    @apply relative px-6 py-3 bg-transparent border-2 border-bb-green text-bb-green font-mono text-sm tracking-widest uppercase;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+  }
+  
+  .btn-bb:hover {
+    @apply bg-bb-green text-bb-black;
+    box-shadow: 
+      0 0 20px rgba(0, 255, 65, 0.6),
+      0 0 40px rgba(0, 255, 65, 0.4),
+      inset 0 0 20px rgba(0, 255, 65, 0.2);
+    text-shadow: none;
+  }
+  
+  /* Amber Button */
+  .btn-amber {
+    @apply relative px-6 py-3 bg-transparent border-2 border-bb-amber text-bb-amber font-mono text-sm tracking-widest uppercase;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-amber:hover {
+    @apply bg-bb-amber text-bb-black;
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.5),
+      0 0 40px rgba(255, 215, 0, 0.3);
+  }
+  
+  /* Chemical Formula Style */
+  .chem-formula {
+    @apply font-mono text-bb-green;
+  }
+  
+  .chem-sub {
+    @apply text-xs align-sub text-bb-muted;
+  }
+  
+  .chem-sup {
+    @apply text-xs align-super text-bb-muted;
+  }
+  
+  /* Terminal Text */
+  .terminal-text {
+    @apply font-mono text-bb-green;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  }
+  
+  /* Section Heading - Breaking Bad Style */
+  .bb-heading {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-bb-white uppercase;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.04em;
+  }
+  
+  /* Status Badge */
+  .status-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 bg-bb-charcoal border border-bb-green/50 rounded-sm;
+  }
+  
+  .status-badge span {
+    @apply font-mono text-xs text-bb-green uppercase tracking-wider;
+  }
+  
+  /* Lab Container - Breaking Bad Style */
+  .lab-container {
+    @apply relative bg-bb-charcoal border-2 border-bb-gray;
+  }
+  
+  .lab-container::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1;
+    background: linear-gradient(90deg, var(--bb-green), transparent);
+  }
+  
+  /* ID Card - Breaking Bad Style */
+  .bb-id-card {
+    @apply relative bg-gradient-to-br from-bb-charcoal to-bb-black border-2 border-bb-gray overflow-hidden;
+  }
+  
+  .bb-id-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1;
+    background: linear-gradient(90deg, var(--bb-green), var(--bb-amber), transparent);
+  }
+  
+  /* Timeline - Breaking Bad Style */
+  .bb-timeline-item {
+    @apply relative pl-8 pb-12 border-l-2 border-bb-gray last:pb-0;
+  }
+  
+  .bb-timeline-item::before {
+    content: '';
+    @apply absolute left-0 top-0 w-4 h-4 -translate-x-1/2 bg-bb-black border-2 border-bb-green;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  }
+  
+  /* Scroll Progress Bar */
+  .scroll-progress {
+    @apply fixed top-0 left-0 h-1 bg-bb-green z-50;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+  }
+  
+  /* Smoke Effect */
+  .smoke-particle {
+    @apply absolute rounded-full pointer-events-none;
+    background: radial-gradient(circle, rgba(0, 255, 65, 0.15) 0%, transparent 70%);
+    animation: smoke 6s ease-out infinite;
+  }
+  
+  /* Grid Background - Breaking Bad Style */
+  .bb-grid-bg {
+    background-image: 
+      linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  /* Scanline Effect */
+  .bb-scanlines::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none opacity-[0.03];
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.1) 2px,
+      rgba(0, 255, 65, 0.1) 4px
+    );
+  }
+  
+  /* Glow Text */
+  .bb-glow {
+    text-shadow: 
+      0 0 10px rgba(0, 255, 65, 0.8),
+      0 0 20px rgba(0, 255, 65, 0.5),
+      0 0 30px rgba(0, 255, 65, 0.3);
+  }
+  
+  /* Lab Card */
+  .bb-lab-card {
+    @apply relative bg-bb-charcoal border-2 border-bb-gray overflow-hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .bb-lab-card:hover {
+    @apply border-bb-green;
+    box-shadow: 
+      0 0 30px rgba(0, 255, 65, 0.2),
+      inset 0 0 30px rgba(0, 255, 65, 0.05);
+  }
+  
+  /* Chemical Reaction Glow */
+  .chem-glow {
+    animation: chem-pulse 2s ease-in-out infinite;
+  }
+  
+  /* Breaking Bad Logo Style Text */
+  .bb-logo-text {
+    @apply font-bold uppercase tracking-tighter;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    text-shadow: 
+      2px 2px 0 #000,
+      -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+  
+  .bb-logo-text span {
+    @apply inline-block;
+    background: var(--bb-green);
+    color: #000;
+    padding: 0 0.1em;
+    margin: 0 0.05em;
+  }
+  
+  /* Hazard Stripes */
+  .hazard-stripes {
+    background: repeating-linear-gradient(
+      45deg,
+      #FFD700,
+      #FFD700 10px,
+      #000 10px,
+      #000 20px
+    );
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar - Breaking Bad Style */
+  .bb-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .bb-scrollbar::-webkit-scrollbar-track {
+    background: #0D0D0D;
+  }
+  
+  .bb-scrollbar::-webkit-scrollbar-thumb {
+    background: #2D2D2D;
+    border-radius: 0;
+    border: 1px solid #00FF41;
+  }
+  
+  .bb-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #00FF41;
+  }
+  
+  /* Text gradient - Breaking Bad Green */
+  .text-bb-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #00FF41 0%, #00CC33 100%);
+  }
+  
+  /* Hide scrollbar */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Keyframes */
+@keyframes smoke {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(-200px) scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes chem-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px rgba(0, 255, 65, 0.3),
+      inset 0 0 5px rgba(0, 255, 65, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(0, 255, 65, 0.6),
+      inset 0 0 10px rgba(0, 255, 65, 0.2);
+  }
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 1);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
